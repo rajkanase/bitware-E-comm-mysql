@@ -23,7 +23,7 @@ router.get('/getallusers',(req,res)=>{
     // if (err) throw err;
     con.query("SELECT * FROM user_table", function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
+    res.send(result);
     });
 
 })
@@ -52,6 +52,19 @@ router.get('/getoneuser/:email/:password',(req,res)=>{
     let pass=req.params.password;
 
     let sql=`SELECT * FROM user_table WHERE email='${em}' AND password='${pass}'`;
+    con.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send(result);
+    })
+
+})
+
+
+router.get('/getoneusr/:email',(req,res)=>{
+    let em=req.params.email;
+    // let pass=req.params.password;
+
+    let sql=`SELECT * FROM user_table WHERE email='${em}'`;
     con.query(sql,(err,result)=>{
         if(err) throw err;
         res.send(result);
