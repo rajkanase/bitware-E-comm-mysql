@@ -21,22 +21,14 @@ export class DashboardComponent implements OnInit {
     }
   
      users:Array<User>;
+     zs:Array<User>;
      welcome;
      usr;
+     cl="modal fade";
+     xyz="none";
      closeResult: string;
      
-  
-    // users: User[]=[
-    //   {
-    //     "_id":"1",
-    //     "role":"Admin Registration",
-    //     "first_name":"rajkumar",
-    //     "last_name":"kanase",
-    //     "user_name":"raj.kanase",
-    //     "email":"raj@gmail.com",
-    //     "password":"123",
-    //     "password_confirmation":"123"}
-    // ];
+
   
     ngOnInit() {
       this.welcome=true;
@@ -51,7 +43,7 @@ export class DashboardComponent implements OnInit {
       
     }
     onMngUsr(){
-      console.log('here');
+      console.log('here');  
       
       this.userSer.getUsers()
       .subscribe(respUser=>{
@@ -73,7 +65,26 @@ export class DashboardComponent implements OnInit {
     }
   
     onEdit(email){
-      this.userSer.editUsr(email).subscribe(respUser=>this.users=respUser);
+      console.log(email);
+      this.cl="modal fade in";
+      this.xyz="block";
+      this.userSer.editUsr(email).subscribe(respUser=>this.zs=respUser);
+    }
+
+    onClose(){
+      this.cl="modal fade";
+      this.xyz="none";
+    }
+
+    onUpdate(fname,lname,uname,email){
+      let up_user:User=new User();
+      up_user.first_name=fname;
+      up_user.last_name=lname;
+      up_user.user_name=uname;
+      up_user.email=email;
+      this.userSer.updateUsr(up_user).subscribe(resp=>{
+        this.router.navigate(['/dash']);
+      });
     }
   
 }

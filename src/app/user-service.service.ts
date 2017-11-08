@@ -75,13 +75,13 @@ editUsr(email){
   return this.http.get(this.editUrl+'/'+email).map((response:Response)=>response.json());
 }
 
-// updateUsr(email){
-//   let headers=new Headers({'Content-Type':'application/json' });
-//   let options=new RequestOptions({headers: headers});
-//   let url=this.upUrl+'/'+email;
-//   return this.http.put(url, JSON.stringify(user),options)
-//   .map((response:Response)=>response.json());
-// }
+updateUsr(up_user){
+  let headers=new Headers({'Content-Type':'application/json' });
+  let options=new RequestOptions({headers: headers});
+  let url=this.upUrl;
+  return this.http.put(url, JSON.stringify(up_user),options)
+  .map((response:Response)=>response.json());
+}
 
 private jwt() {
   // create authorization header with jwt token

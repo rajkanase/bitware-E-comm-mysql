@@ -60,6 +60,21 @@ router.get('/getoneuser/:email/:password',(req,res)=>{
 })
 
 
+router.put('/update',(req,res)=>{
+    let fname=req.body.first_name;
+    let lname=req.body.last_name;
+    let uname=req.body.user_name;
+    let email1=req.body.email;
+
+    let sql=`update user_table set first_name=${fname},last_name=${lname},user_name=${uname},email=${email1} where email='${email1}'`;
+
+    con.query(sql,(err,result)=>{
+        if (err) throw err;
+        res.send('Updated');
+    })
+})
+
+
 router.get('/getoneusr/:email',(req,res)=>{
     let em=req.params.email;
     // let pass=req.params.password;

@@ -24,6 +24,7 @@ import { AlertService } from './alert.service';
     MyRoutingModule,
     FormsModule,
     HttpModule
+    // NgbModule.forRoot(),
   ],
   providers: [UserServiceService,AlertService],
   bootstrap: [AppComponent]
